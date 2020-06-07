@@ -63,14 +63,14 @@ with open('boston_payroll_data.csv') as csvfile:
 			if row["TITLE"].lower() == "police officer":
 				police_officer_salries.append(float(row["TOTAL EARNINGS"].replace(',', '')))
 
-education_salaries.sort(reverse = True)
-bpd_salaries.sort(reverse = True)
+education_salaries.sort(reverse=True)
+bpd_salaries.sort(reverse=True)
 teacher_salaries.sort(reverse=True)
 police_officer_salries.sort(reverse=True)
 print "Total education employees {}".format(education_employee_count)
 print "Education Salary total {}".format(education_salary_total)
 print "Education Overtime total {}".format(education_overtime_total)
-#print "Education job titles {}".format(education_job_titles)
+print "Education job titles {}".format(education_job_titles)
 print "Top education ten salaries {}".format(education_salaries[:9])
 print "Sum of top 10 education salaries {}".format(sum(education_salaries[:9]))
 print "Top 10 teacher salaries {}".format(teacher_salaries[:9])
@@ -89,9 +89,8 @@ print "Total police officers {}".format(len(police_officer_salries))
 # print "Education job titles {}".format(bdp_job_titles.keys())
 
 normalized_titles = defaultdict(int)
-# print bdp_job_titles
-cleaned_titles = [s.replace("'", "") for s in bdp_job_titles.keys()]
 
+# Trying to categorize BPD job titles
 for title in bdp_job_titles.keys():
 	if title.lower() == "police officer":
 		print "here"
@@ -129,4 +128,4 @@ for title in bdp_job_titles.keys():
 		normalized_titles["tech"] += 1
 	else:
 		normalized_titles[title] += 1
-# print normalized_titles.keys()
+print normalized_titles.keys()
