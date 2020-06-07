@@ -8,7 +8,6 @@
 import csv
 from collections import defaultdict
 
-print "here"
 education_departments = ["Achievement Gap", "Alighieri Montessori School", "Curley K-8", 
 "Dorchester Academy", "Dudley St. Neighborhood School", "Early Learning Services", 
 "East Boston EEC", "Edison K-8", "Eliot K-8", "English Language Learn", "Frederick Pilot Middle", 
