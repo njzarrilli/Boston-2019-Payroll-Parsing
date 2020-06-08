@@ -41,34 +41,35 @@ def parse():
 		reader = csv.DictReader(csvfile)
 		headers = reader.fieldnames
 		for row in reader:
+			employee_earnings = float(row["TOTAL EARNINGS"].replace(',', ''))
 			# for BPS departments, some departments are just titled the school's name, while others are titled something like "BPS [school name]" or "BPS Transportation"
 			if row["DEPARTMENT_NAME"] in education_departments or row["DEPARTMENT_NAME"].startswith("BPS"):
 				education_total_employee_count += 1
 				# only include full time employees as part time salary data ends up skewing numbers to make salaries seem lower
-				if float(row["TOTAL EARNINGS"].replace(',', '')) >= miniumum_wage_full_time_salary:
+				if employee_earnings >= miniumum_wage_full_time_salary:
 					education_full_time_employee_count += 1
 					education_job_titles[row["TITLE"]] += 1
 					# "-" indicates a null value
 					if row["TOTAL EARNINGS"] != "-":
-						education_salaries.append(float(row["TOTAL EARNINGS"].replace(',', '')))
-						education_salary_total += float(row["TOTAL EARNINGS"].replace(',', ''))
+						education_salaries.append(employee_earnings)
+						education_salary_total += employee_earnings
 						if row["TITLE"].lower() == "teacher":
-							teacher_salaries.append(float(row["TOTAL EARNINGS"].replace(',', '')))
+							teacher_salaries.append(employee_earnings)
 					if row[" OVERTIME "].strip() != "-":
 						education_overtime_total += float(row[" OVERTIME "].replace(',', ''))
 			# unlike BPS department, there was no variation for BPD department titles
 			if row["DEPARTMENT_NAME"] == "Boston Police Department":
 				bpd_total_employee_count += 1
 				# only include full time employees as part time salary data ends up skewing numbers to make salaries seem lower
-				if float(row["TOTAL EARNINGS"].replace(',', '')) >= miniumum_wage_full_time_salary:
+				if employee_earnings >= miniumum_wage_full_time_salary:
 					bpd_full_time_employee_count += 1
 					bdp_job_titles[row["TITLE"]] += 1
 					# "-" indicates a null value
 					if row["TOTAL EARNINGS"] != "-":
-						bpd_salary_total += float(row["TOTAL EARNINGS"].replace(',', ''))
-						bpd_salaries.append(float(row["TOTAL EARNINGS"].replace(',', '')))
+						bpd_salary_total += float(employee_earnings)
+						bpd_salaries.append(employee_earnings)
 						if row["TITLE"].lower() == "police officer":
-							police_officer_salaries.append(float(row["TOTAL EARNINGS"].replace(',', '')))
+							police_officer_salaries.append(employee_earnings)
 					if row[" OVERTIME "].strip() != "-":
 						bpd_overtime_total += float(row[" OVERTIME "].replace(',', ''))
 
