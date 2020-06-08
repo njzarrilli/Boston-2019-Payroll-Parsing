@@ -94,11 +94,9 @@ print("Sum of top 10 police officer salaries {}".format(sum(police_officer_salar
 print("Sum of all police offcier salaries {}".format(sum(police_officer_salaries)))
 print("Total police officers {}".format(len(police_officer_salaries)))
 print("Median full time police officer salary {}".format(statistics.median(police_officer_salaries)))
-print("Education job titles {}".format(bdp_job_titles.keys()))
-
-normalized_titles = defaultdict(int)
 
 # Trying to categorize BPD job titles
+normalized_titles = defaultdict(int)
 for title in bdp_job_titles.keys():
 	if "officer" in title.lower() or "offc" in title.lower() or "police officer" in title.lower():
 		normalized_titles["police_officer"] += 1
@@ -134,4 +132,4 @@ for title in bdp_job_titles.keys():
 		normalized_titles["tech"] += 1
 	else:
 		normalized_titles[title] += 1
-print(normalized_titles.keys())
+print("BPD job titles {}".format(normalized_titles.keys()))
