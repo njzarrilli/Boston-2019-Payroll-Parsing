@@ -35,6 +35,7 @@ def parse():
 	bpd_overtime_total = 0.0
 	bpd_salaries = []
 	police_officer_salaries = []
+	full_time_bpd_salary_total = 0.0
 	miniumum_wage_full_time_salary = 12 * 40 * 52 # $12 minimum hourly wage times 40 hour week times 52 weeks
 
 	with open('boston_payroll_data.csv') as csvfile:
